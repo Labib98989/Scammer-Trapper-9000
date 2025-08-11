@@ -1,0 +1,445 @@
+[
+  {
+    "chain": "eth",
+    "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "ownership": "\ud83d\udea9 Ownership NOT renounced \u2014 owner=0xFcb19e6a322b27c06842A71e8c725399f049AE3a (EOA)",
+    "abi_verified": true,
+    "abi_error": null,
+    "suspicious_functions": [],
+    "has_mint": false,
+    "fees_percent": {},
+    "liquidity": {
+      "pair": "0xB4e16d0168e52d35CaCD2c6185b44281Ec28C9Dc",
+      "token0": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "token1": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "base_reserve_units": 3.6058775701725145e+21,
+      "lp_total_supply": 84462449130769844,
+      "lp_burned": 98495412729,
+      "lp_burn_pct": 0.0001166144407871757,
+      "base_symbol": "WETH",
+      "base_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "base_decimals": 18,
+      "base_reserve_human": 3605.8775701725144,
+      "usd_liquidity_est": 14161673.813429939
+    },
+    "context": {
+      "age_days": 2561.7614236111112,
+      "chain": "eth"
+    },
+    "score": 0,
+    "honeypot": null,
+    "risk_tier": "LOW"
+  },
+  {
+    "chain": "eth",
+    "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "ownership": "\ud83d\udea9 Ownership NOT renounced \u2014 owner=0xC6CDE7C39eB2f0F0095F41570af89eFC2C1Ea828 (Contract)",
+    "abi_verified": true,
+    "abi_error": null,
+    "suspicious_functions": [
+      "addBlackList",
+      "getBlackListStatus",
+      "isBlackListed",
+      "removeBlackList"
+    ],
+    "has_mint": false,
+    "fees_percent": {
+      "maximumFee": 0.0
+    },
+    "liquidity": {
+      "pair": "0x0d4a11d5EEaaC28EC3F61d100daF4d40471f1852",
+      "token0": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "token1": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "base_reserve_units": 6.984369163355984e+21,
+      "lp_total_supply": 152694001175752560,
+      "lp_burned": 223269761830,
+      "lp_burn_pct": 0.0001462203885619671,
+      "base_symbol": "WETH",
+      "base_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "base_decimals": 18,
+      "base_reserve_human": 6984.369163355984,
+      "usd_liquidity_est": 27430315.078416232
+    },
+    "context": {
+      "age_days": 2810.5441087962963,
+      "chain": "eth"
+    },
+    "score": 27,
+    "honeypot": null,
+    "risk_tier": "LOW"
+  },
+  {
+    "chain": "eth",
+    "address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "ownership": "[Inference] \ud83d\udea9 Owner-like value from storage \u2014 owner\u22480x720000000000000000000000000000000000001a (EOA)",
+    "abi_verified": true,
+    "abi_error": null,
+    "suspicious_functions": [],
+    "has_mint": false,
+    "fees_percent": {},
+    "liquidity": {
+      "pair": "0x0d4a11d5EEaaC28EC3F61d100daF4d40471f1852",
+      "token0": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "token1": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "base_reserve_units": 27458258245503.0,
+      "lp_total_supply": 152694001175752560,
+      "lp_burned": 223269761830,
+      "lp_burn_pct": 0.0001462203885619671,
+      "base_symbol": "USDT",
+      "base_address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "base_decimals": 6,
+      "base_reserve_human": 27458258.245503,
+      "usd_liquidity_est": 27458258.245503
+    },
+    "context": {
+      "age_days": 2796.1024537037038,
+      "chain": "eth"
+    },
+    "score": 0,
+    "honeypot": null,
+    "risk_tier": "LOW"
+  },
+  {
+    "chain": "eth",
+    "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+    "ownership": "[Inference] \ud83d\udea9 Owner-like value from storage \u2014 owner\u22480x0000000000000000033b2e3C9FD0803ce8000000 (EOA)",
+    "abi_verified": true,
+    "abi_error": null,
+    "suspicious_functions": [],
+    "has_mint": true,
+    "fees_percent": {},
+    "liquidity": {
+      "pair": "0xd3d2E2692501A5c9Ca623199D38826e513033a17",
+      "token0": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+      "token1": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "base_reserve_units": 7.540577949775259e+20,
+      "lp_total_supply": 5627615623909196376161,
+      "lp_burned": 1000,
+      "lp_burn_pct": 1.7769514956768757e-17,
+      "base_symbol": "WETH",
+      "base_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "base_decimals": 18,
+      "base_reserve_human": 754.0577949775259,
+      "usd_liquidity_est": 2961476.1791357915
+    },
+    "context": {
+      "age_days": 1788.8150810185184,
+      "chain": "eth"
+    },
+    "score": 0,
+    "honeypot": null,
+    "risk_tier": "LOW"
+  },
+  {
+    "chain": "eth",
+    "address": "0x042F6d08d62De8A46ec44999ffbb8b6276916e62",
+    "ownership": "\u26a0\ufe0f Cannot detect ownership \u2014 contract may be nonstandard or protected.",
+    "abi_verified": false,
+    "abi_error": "\u274c ABI fetch failed: Contract source code not verified",
+    "suspicious_functions": [],
+    "has_mint": false,
+    "fees_percent": {},
+    "liquidity": null,
+    "context": {
+      "age_days": 0.0,
+      "chain": "eth"
+    },
+    "score": 35,
+    "honeypot": null,
+    "risk_tier": "MEDIUM"
+  },
+  {
+    "chain": "eth",
+    "address": "0x8E870D67F660D95d5be530380D0eC0bd388289E1",
+    "ownership": "\ud83d\udea9 Ownership NOT renounced \u2014 owner=0x0644Bd0248d5F89e4F6E845a91D15c23591e5D33 (Contract)",
+    "abi_verified": true,
+    "abi_error": null,
+    "suspicious_functions": [],
+    "has_mint": false,
+    "fees_percent": {},
+    "liquidity": {
+      "pair": "0x598e7A017dAce2534Bc3F7496124C89425b1E165",
+      "token0": "0x8E870D67F660D95d5be530380D0eC0bd388289E1",
+      "token1": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "base_reserve_units": 5.108304933048224e+16,
+      "lp_total_supply": 2622066442694597222,
+      "lp_burned": 1000,
+      "lp_burn_pct": 3.8137858893168944e-14,
+      "base_symbol": "WETH",
+      "base_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "base_decimals": 18,
+      "base_reserve_human": 0.05108304933048224,
+      "usd_liquidity_est": 200.6228630715906
+    },
+    "context": {
+      "age_days": 2525.927025462963,
+      "chain": "eth"
+    },
+    "score": 17,
+    "honeypot": null,
+    "risk_tier": "LOW"
+  },
+  {
+    "chain": "eth",
+    "address": "0x0000000000085d4780B73119b644AE5ecd22b376",
+    "ownership": "\ud83d\udea9 Ownership NOT renounced \u2014 owner=0x0000000000075EfBeE23fe2de1bd0b7690883cc9 (Contract)",
+    "abi_verified": true,
+    "abi_error": null,
+    "suspicious_functions": [],
+    "has_mint": false,
+    "fees_percent": {},
+    "liquidity": {
+      "pair": "0xb4d0d9df2738abE81b87b66c80851292492D1404",
+      "token0": "0x0000000000085d4780B73119b644AE5ecd22b376",
+      "token1": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "base_reserve_units": 5.730924027398278e+18,
+      "lp_total_supply": 172986726946567110997,
+      "lp_burned": 1000,
+      "lp_burn_pct": 5.780790339532144e-16,
+      "base_symbol": "WETH",
+      "base_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "base_decimals": 18,
+      "base_reserve_human": 5.730924027398278,
+      "usd_liquidity_est": 22507.551947106112
+    },
+    "context": {
+      "age_days": 2411.645474537037,
+      "chain": "eth"
+    },
+    "score": 17,
+    "honeypot": null,
+    "risk_tier": "LOW"
+  },
+  {
+    "chain": "eth",
+    "address": "0x45804880De22913dAFE09f4980848ECE6EcbAf78",
+    "ownership": "\ud83d\udea9 Ownership NOT renounced \u2014 owner=0x0644Bd0248d5F89e4F6E845a91D15c23591e5D33 (Contract)",
+    "abi_verified": true,
+    "abi_error": null,
+    "suspicious_functions": [],
+    "has_mint": false,
+    "fees_percent": {},
+    "liquidity": {
+      "pair": "0x9C4Fe5FFD9A9fC5678cFBd93Aa2D4FD684b67C4C",
+      "token0": "0x45804880De22913dAFE09f4980848ECE6EcbAf78",
+      "token1": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "base_reserve_units": 2.1731194174516455e+21,
+      "lp_total_supply": 1595664110661830959953,
+      "lp_burned": 1000,
+      "lp_burn_pct": 6.266983090728485e-17,
+      "base_symbol": "WETH",
+      "base_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "base_decimals": 18,
+      "base_reserve_human": 2173.1194174516454,
+      "usd_liquidity_est": 8534679.21433304
+    },
+    "context": {
+      "age_days": 2173.964675925926,
+      "chain": "eth"
+    },
+    "score": 0,
+    "honeypot": null,
+    "risk_tier": "LOW"
+  },
+  {
+    "chain": "eth",
+    "address": "0x8076C74C5e3F5852037F31Ff0093Eeb8c8ADd8D3",
+    "ownership": "\u26a0\ufe0f Cannot detect ownership \u2014 contract may be nonstandard or protected.",
+    "abi_verified": false,
+    "abi_error": "\u274c ABI fetch failed: Contract source code not verified",
+    "suspicious_functions": [],
+    "has_mint": false,
+    "fees_percent": {},
+    "liquidity": null,
+    "context": {
+      "age_days": 0.0,
+      "chain": "eth"
+    },
+    "score": 35,
+    "honeypot": null,
+    "risk_tier": "MEDIUM"
+  },
+  {
+    "chain": "eth",
+    "address": "0xc748673057861a797275CD8A068AbB95A902e8de",
+    "ownership": "\u26a0\ufe0f Cannot detect ownership \u2014 contract may be nonstandard or protected.",
+    "abi_verified": false,
+    "abi_error": "\u274c ABI fetch failed: Contract source code not verified",
+    "suspicious_functions": [],
+    "has_mint": false,
+    "fees_percent": {},
+    "liquidity": null,
+    "context": {
+      "age_days": 0.0,
+      "chain": "eth"
+    },
+    "score": 35,
+    "honeypot": null,
+    "risk_tier": "MEDIUM"
+  },
+  {
+    "chain": "eth",
+    "address": "0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2",
+    "ownership": "\u2705 Ownership is RENOUNCED.",
+    "abi_verified": true,
+    "abi_error": null,
+    "suspicious_functions": [],
+    "has_mint": true,
+    "fees_percent": {},
+    "liquidity": {
+      "pair": "0xC2aDdA861F89bBB333c90c492cB837741916A225",
+      "token0": "0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2",
+      "token1": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "base_reserve_units": 2.4346064805674834e+20,
+      "lp_total_supply": 222492266068413577666,
+      "lp_burned": 1000,
+      "lp_burn_pct": 4.49453824921947e-16,
+      "base_symbol": "WETH",
+      "base_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "base_decimals": 18,
+      "base_reserve_human": 243.46064805674834,
+      "usd_liquidity_est": 956163.9897887558
+    },
+    "context": {
+      "age_days": 2812.806655092593,
+      "chain": "eth"
+    },
+    "score": 0,
+    "honeypot": null,
+    "risk_tier": "LOW"
+  },
+  {
+    "chain": "eth",
+    "address": "0x514910771AF9Ca656af840dff83E8264EcF986CA",
+    "ownership": "\u26a0\ufe0f Cannot detect ownership \u2014 contract may be nonstandard or protected.",
+    "abi_verified": true,
+    "abi_error": null,
+    "suspicious_functions": [],
+    "has_mint": false,
+    "fees_percent": {},
+    "liquidity": {
+      "pair": "0xa2107FA5B38d9bbd2C461D6EDf11B11A50F6b974",
+      "token0": "0x514910771AF9Ca656af840dff83E8264EcF986CA",
+      "token1": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "base_reserve_units": 3.036439208605885e+20,
+      "lp_total_supply": 2267875179031687677894,
+      "lp_burned": 47197570751134840,
+      "lp_burn_pct": 0.002081136174843923,
+      "base_symbol": "WETH",
+      "base_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "base_decimals": 18,
+      "base_reserve_human": 303.6439208605885,
+      "usd_liquidity_est": 1192526.9449602696
+    },
+    "context": {
+      "age_days": 2882.680150462963,
+      "chain": "eth"
+    },
+    "score": 0,
+    "honeypot": null,
+    "risk_tier": "LOW"
+  },
+  {
+    "chain": "eth",
+    "address": "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32",
+    "ownership": "[Inference] \ud83d\udea9 Owner-like value from storage \u2014 owner\u22480xf73a1260d222f447210581DDf212D915c09a3249 (Contract)",
+    "abi_verified": true,
+    "abi_error": null,
+    "suspicious_functions": [],
+    "has_mint": false,
+    "fees_percent": {},
+    "liquidity": {
+      "pair": "0x454F11D58E27858926d7a4ECE8bfEA2c33E97B13",
+      "token0": "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32",
+      "token1": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "base_reserve_units": 5.077488557263686e+18,
+      "lp_total_supply": 55986469072359329593,
+      "lp_burned": 1000,
+      "lp_burn_pct": 1.7861458608999917e-15,
+      "base_symbol": "WETH",
+      "base_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "base_decimals": 18,
+      "base_reserve_human": 5.077488557263686,
+      "usd_liquidity_est": 20041.405859261067
+    },
+    "context": {
+      "age_days": 1694.657002314815,
+      "chain": "eth"
+    },
+    "score": 2,
+    "honeypot": null,
+    "risk_tier": "LOW"
+  },
+  {
+    "chain": "eth",
+    "address": "0xf2B4073b09B16b84E75A4348dfC35917D90Bd74d",
+    "ownership": "\u26a0\ufe0f Cannot detect ownership \u2014 contract may be nonstandard or protected.",
+    "abi_verified": false,
+    "abi_error": "\u274c ABI fetch failed: Contract source code not verified",
+    "suspicious_functions": [],
+    "has_mint": false,
+    "fees_percent": {},
+    "liquidity": null,
+    "context": {
+      "age_days": 0.0,
+      "chain": "eth"
+    },
+    "score": 35,
+    "honeypot": null,
+    "risk_tier": "MEDIUM"
+  },
+  {
+    "chain": "eth",
+    "address": "0x8076C74C5e3F5852037F31Ff0093Eeb8c8ADd8D3",
+    "ownership": "\u26a0\ufe0f Cannot detect ownership \u2014 contract may be nonstandard or protected.",
+    "abi_verified": false,
+    "abi_error": "\u274c ABI fetch failed: Contract source code not verified",
+    "suspicious_functions": [],
+    "has_mint": false,
+    "fees_percent": {},
+    "liquidity": null,
+    "context": {
+      "age_days": 0.0,
+      "chain": "eth"
+    },
+    "score": 35,
+    "honeypot": null,
+    "risk_tier": "MEDIUM"
+  },
+  {
+    "chain": "eth",
+    "address": "0xC6093Fd9cc143F9f058938868b2df2daF9A91d28",
+    "ownership": "\u26a0\ufe0f Cannot detect ownership \u2014 contract may be nonstandard or protected.",
+    "abi_verified": false,
+    "abi_error": "\u274c ABI fetch failed: Contract source code not verified",
+    "suspicious_functions": [],
+    "has_mint": false,
+    "fees_percent": {},
+    "liquidity": null,
+    "context": {
+      "age_days": 0.0,
+      "chain": "eth"
+    },
+    "score": 35,
+    "honeypot": null,
+    "risk_tier": "MEDIUM"
+  },
+  {
+    "chain": "eth",
+    "address": "0x970eCe7E4fe08F4eE5aa4bD56c87E1bbac7d2790",
+    "ownership": "[Inference] \ud83d\udea9 Owner-like value from storage \u2014 owner\u22480x0000000000000000000000000000000000007ddD (EOA)",
+    "abi_verified": false,
+    "abi_error": "\u274c ABI fetch failed: Contract source code not verified",
+    "suspicious_functions": [],
+    "has_mint": false,
+    "fees_percent": {},
+    "liquidity": null,
+    "context": {
+      "age_days": 0.21386574074074075,
+      "chain": "eth"
+    },
+    "score": 15,
+    "honeypot": null,
+    "risk_tier": "LOW"
+  }
+]

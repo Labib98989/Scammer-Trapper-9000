@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Scammer Trapper 9000</title>
+  <meta name="theme-color" content="#0b0e11" />
+  <style>
+    :root{
+      --bg:#0b0e11;         /* page */
+      --panel:#0f141a;      /* cards */
+      --border:#1f2a38;     /* outlines */
+      --text:#e6edf3;       /* primary text */
+      --muted:#9aa4af;      /* secondary text */
+      --accent:#1f3b8a;     /* dark blue accent */
+      --accent-2:#3557c2;   /* lighter hover */
+      --good:#22c55e;
+      --warn:#f59e0b;
+      --bad:#ef4444;
+      --okbg:#0c2415;
+      --warnbg:#2b210c;
+      --badbg:#2b1212;
+      --chip:#131b26;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;background:radial-gradient(1200px 800px at 10% -10%, #0e1420, transparent),
+      radial-gradient(1200px 800px at 90% -20%, #0a101a, transparent), var(--bg);
+      color:var(--text); font:14px/1.5 ui-sans-serif,system-ui,Segoe UI,Roboto,Arial;
+    }
+    a{color:#8fb4ff;text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Header */
+    .top{position:sticky;top:0;z-index:3;background:rgba(11,14,17,.8);backdrop-filter:saturate(120%) blur(8px);border-bottom:1px solid var(--border)}
+    .top-inner{max-width:1200px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
+    .logo{width:28px;height:28px;display:inline-block}
+    .brand{font-weight:800;letter-spacing:.5px}
+    .tag{color:var(--muted);font-size:12px;margin-left:8px}
+
+    .wrap{max-width:1200px;margin:16px auto;padding:0 16px;display:grid;gap:16px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), transparent), var(--panel); border:1px solid var(--border); border-radius:12px; padding:14px}
+
+    /* Controls */
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    textarea,input,select,button{border-radius:10px;border:1px solid var(--border);background:#0b1118;color:var(--text)}
+    textarea{min-height:110px;width:100%;padding:10px;font-family:ui-monospace,Consolas,monospace}
+    input,select{padding:9px}
+    button{background:linear-gradient(180deg,var(--accent),#182e6b);border:0;padding:10px 14px;font-weight:700;cursor:pointer}
+    button:hover{background:linear-gradient(180deg,var(--accent-2),#1d3880)}
+    .muted{color:var(--muted)}
+    .small{font-size:12px}
+    .right{margin-left:auto}
+    .loader{display:none}
+    .loader.on{display:inline-block}
+    .count{background:var(--chip);border:1px solid var(--border);padding:4px 8px;border-radius:999px}
+    .controls-grid{display:grid;grid-template-columns:2fr 1fr;gap:12px}
+    @media (max-width:900px){ .controls-grid{grid-template-columns:1fr} }
+
+    /* Filters & actions */
+    .bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .pill{padding:5px 10px;border-radius:999px;border:1px solid var(--border);background:var(--chip);font-weight:700;font-size:12px;cursor:pointer}
+    .pill.active{outline:2px solid var(--accent)}
+    .badge{padding:4px 8px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.2px;display:inline-flex;align-items:center;gap:6px}
+    .badge.low{background:var(--okbg);color:var(--good)}
+    .badge.medium{background:var(--warnbg);color:var(--warn)}
+    .badge.high{background:var(--badbg);color:#fda4af;animation:pulse 2s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(239,68,68,.35)}70%{box-shadow:0 0 0 8px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
+
+    /* Table */
+    table{width:100%;border-collapse:collapse}
+    th,td{border-bottom:1px solid var(--border);padding:12px 10px;vertical-align:top}
+    th{color:#c9d7ff;text-align:left;user-select:none;cursor:pointer;position:sticky;top:0;background:var(--panel);z-index:1}
+    tr:hover td{background:rgba(255,255,255,.02)}
+    .code{font-family:ui-monospace,Consolas,monospace}
+    .actions button{padding:6px 10px}
+    .caret{transform:rotate(-90deg);transition:transform .15s ease}
+    .open .caret{transform:rotate(0deg)}
+    .details{display:none;background:#0b1118}
+    tr.open + tr.details{display:table-row}
+    .kvs{display:grid;grid-template-columns:140px 1fr;gap:6px;font-size:13px}
+    @media (max-width:720px){
+      th:nth-child(4),td:nth-child(4), /* age */
+      th:nth-child(5),td:nth-child(5), /* LP  */
+      th:nth-child(7),td:nth-child(7), /* fees */
+      th:nth-child(8),td:nth-child(8)  /* honeypot */
+      {display:none}
+      .kvs{grid-template-columns:120px 1fr}
+    }
+
+    /* Footer */
+    footer{color:var(--muted);font-size:11px;text-align:center;padding:16px 0}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="top">
+    <div class="top-inner">
+      <svg class="logo" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="#203771" d="M12 2l7 3v5c0 5.25-3.5 9.83-7 11-3.5-1.17-7-5.75-7-11V5l7-3z"/>
+        <circle cx="12" cy="10" r="3.5" fill="none" stroke="#8fb4ff" stroke-width="1.6"/>
+        <path d="M12 5v2M12 13v2M9 10H7M17 10h-2" stroke="#8fb4ff" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <div class="brand">Scammer Trapper 9000</div>
+        <div class="tag">Dark-mode radar for new-token rug risk</div>
+      </div>
+      <div class="right bar">
+        <button id="demoBtn" class="ghost small">Demo data</button>
+        <button id="exportCsv" class="ghost small">Export CSV</button>
+        <button id="exportJson" class="ghost small">Export JSON</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <!-- Controls -->
+    <section class="card">
+      <div class="controls-grid">
+        <div>
+          <div class="small muted" style="margin-bottom:6px">Token addresses (comma, space, or newline)</div>
+          <textarea id="addresses" placeholder="0x..., 0x..., 0x..."></textarea>
+          <div class="bar small muted" style="margin-top:6px">
+            <span class="count"><span id="addrCount">0</span> parsed</span>
+            <span class="right">We auto-clean, dedupe, and validate EVM addresses.</span>
+          </div>
+        </div>
+        <div>
+          <div class="row">
+            <label class="small">Chain<br/>
+              <select id="chain">
+                <option value="eth">Ethereum</option>
+                <option value="bsc">BSC</option>
+              </select>
+            </label>
+            <label class="small">Concurrency<br/>
+              <input id="conc" type="number" min="1" max="8" value="2" style="width:90px">
+            </label>
+            <label class="small">Explorer QPS<br/>
+              <input id="qps" type="number" min="1" max="10" step="0.5" value="4" style="width:90px">
+            </label>
+          </div>
+          <div class="row" style="margin-top:10px">
+            <button id="scanBtn">Scan</button>
+            <span class="loader" id="spinner">⏳ Scanning…</span>
+            <div id="errBox" class="small" style="color:var(--bad);display:none"></div>
+          </div>
+          <div class="small muted" style="margin-top:10px">Your last inputs are saved locally.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="card">
+      <div class="bar" style="margin-bottom:8px">
+        <strong>Results</strong>
+        <div class="right bar small">
+          <button class="pill" id="fltAll">All</button>
+          <button class="pill" id="fltHigh">High</button>
+          <button class="pill" id="fltMed">Med</button>
+          <button class="pill" id="fltLow">Low</button>
+          <button class="pill" id="fltErr">Errors</button>
+        </div>
+      </div>
+      <div class="small muted" id="legend" style="margin-bottom:8px">
+        Legend: <span class="badge low">LOW</span> <span class="badge medium">MEDIUM</span> <span class="badge high">HIGH</span>
+        <span class="muted">— score is 0–100 (higher = riskier).</span>
+      </div>
+      <div style="overflow:auto">
+        <table id="tbl">
+          <thead>
+            <tr>
+              <th data-k="address">Token</th>
+              <th data-k="risk_tier">Risk</th>
+              <th data-k="score">Score</th>
+              <th data-k="age">Age (days)</th>
+              <th data-k="liq">LP (USD est.)</th>
+              <th data-k="flags">Flags</th>
+              <th data-k="fees">Fees</th>
+              <th data-k="honeypot">Honeypot</th>
+              <th data-k="">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>For research/education only. This is <b>not financial advice</b>. Do your own research.</div>
+  </footer>
+
+<script>
+  const $ = s => document.querySelector(s);
+  const chainEl = $('#chain'), addrEl = $('#addresses'), bodyEl = $('#body');
+  const errEl = $('#errBox'), spinEl = $('#spinner'), scanBtn = $('#scanBtn');
+  const concEl = $('#conc'), qpsEl = $('#qps'), addrCountEl = $('#addrCount');
+  const filterBtns = { all:$('#fltAll'), high:$('#fltHigh'), med:$('#fltMed'), low:$('#fltLow'), err:$('#fltErr') };
+  const exportCsvBtn = $('#exportCsv'), exportJsonBtn = $('#exportJson'), demoBtn = $('#demoBtn');
+
+  let results = [], filter='all', sortKey='score', sortDir=-1;
+
+  // --- init / restore ---
+  (function init(){
+    try{
+      const saved = JSON.parse(localStorage.getItem('st9:last')||'{}');
+      if(saved.chain) chainEl.value = saved.chain;
+      if(saved.addresses) addrEl.value = saved.addresses.join('\n');
+      if(saved.conc) concEl.value = saved.conc;
+      if(saved.qps) qpsEl.value = saved.qps;
+    }catch{}
+    addrEl.addEventListener('input', updateAddrCount);
+    updateAddrCount();
+
+    filterBtns.all.onclick=()=>{filter='all';setActive('all');render()}
+    filterBtns.high.onclick=()=>{filter='HIGH';setActive('high');render()}
+    filterBtns.med.onclick=()=>{filter='MEDIUM';setActive('med');render()}
+    filterBtns.low.onclick=()=>{filter='LOW';setActive('low');render()}
+    filterBtns.err.onclick=()=>{filter='err';setActive('err');render()}
+
+    document.querySelectorAll('th').forEach(th=>{
+      const k = th.dataset.k;
+      if(!k) return;
+      th.addEventListener('click',()=>{
+        if(sortKey===k){ sortDir*=-1 } else { sortKey=k; sortDir=-1 }
+        render();
+      });
+    });
+
+    exportJsonBtn.onclick = ()=> download('scans.json', JSON.stringify(results, null, 2));
+    exportCsvBtn.onclick  = ()=> download('scans.csv', toCSV(results));
+
+    demoBtn.onclick = ()=>{ results = demoResults().map(x=>({...x, chain: chainEl.value})); render(); }
+
+    scanBtn.addEventListener('click', doScan);
+  })();
+
+  function setActive(which){
+    Object.entries(filterBtns).forEach(([k,el])=> el.classList.toggle('active', (k===which)));
+  }
+
+  function updateAddrCount(){ addrCountEl.textContent = parseAddresses(addrEl.value).length; }
+
+  function parseAddresses(text){
+    return [...new Set(
+      (text||'').split(/[\s,;]+/g)
+        .map(s=>s.trim())
+        .filter(Boolean)
+        .map(s=> s.startsWith('0x') ? s : '0x'+s)
+        .filter(s=> /^0x[a-fA-F0-9]{40}$/.test(s))
+    )];
+  }
+
+  function explorer(chain, addr){
+    return chain==='bsc' ? `https://bscscan.com/address/${addr}` : `https://etherscan.io/address/${addr}`;
+  }
+
+  function badge(t){
+    const v = (t||'').toUpperCase();
+    const cls = v==='HIGH' ? 'high' : v==='LOW' ? 'low' : 'medium';
+    return `<span class="badge ${cls}">${v||'N/A'}</span>`;
+  }
+
+  function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
+
+  function val(r,k){
+    if(k==='address') return (r.address||'').toLowerCase();
+    if(k==='risk_tier') return (r.risk_tier||'').toLowerCase();
+    if(k==='score') return Number(r.score||0);
+    if(k==='age') return Number(r?.context?.age_days||0);
+    if(k==='liq') return Number(r?.liquidity?.usd_liquidity_est||r?.liquidity?.usd||0);
+    if(k==='flags') return (r.suspicious_functions||[]).length;
+    if(k==='fees') return Number(r?.fees_percent?.sell||0)+Number(r?.fees_percent?.buy||0);
+    if(k==='honeypot') return (r?.honeypot?.status||'').toLowerCase();
+    return 0;
+  }
+
+  function render(){
+    const rows = results.filter(r=>{
+      if(filter==='all') return true;
+      if(filter==='err') return !!r.error;
+      return (r.risk_tier||'').toUpperCase()===filter;
+    }).sort((a,b)=>{
+      const va=val(a,sortKey), vb=val(b,sortKey);
+      return (va<vb?-1:va>vb?1:0)*sortDir;
+    });
+
+    bodyEl.innerHTML = rows.map(r=>{
+      const addrCell = `<a class="code" href="${explorer(r.chain||chainEl.value,r.address)}" target="_blank" rel="noreferrer">${r.address}</a>`;
+      if(r.error){
+        return `
+          <tr class="open">
+            <td>${addrCell}</td>
+            <td colspan="8" style="color:var(--bad)">Error: ${escapeHtml(r.error)}</td>
+          </tr>
+        `;
+      }
+
+      // Age + reason if unknown
+      const ctx = r?.context || {};
+      const ageStr = ctx.age_days!=null ? formatNum(ctx.age_days, 1) : '';
+      const ageCell = ageStr || (ctx.error ? `<span class="muted small">(${escapeHtml(ctx.error)})</span>` : '');
+
+      // LP
+      const liq = r?.liquidity?.usd_liquidity_est ?? r?.liquidity?.usd ?? '';
+      const liqCell = (liq!=='' ? formatUSD(liq) : '<span class="muted small">n/a</span>');
+
+      // Flags
+      const flags = (r.suspicious_functions||[]).join(', ');
+
+      // Fees + reason if we couldn't compute
+      let feesCell = '';
+      if (r.fees_percent && (r.fees_percent.buy!=null || r.fees_percent.sell!=null)) {
+        const b = r.fees_percent.buy, s = r.fees_percent.sell;
+        const bStr = (b==null?'?':formatPct(b,2));
+        const sStr = (s==null?'?':formatPct(s,2));
+        feesCell = `buy ${bStr}% / sell ${sStr}%`;
+      } else if (r.abi_verified === false || r.abi_error) {
+        const why = r.abi_error || 'ABI not verified';
+        feesCell = `<span class="muted small">(${escapeHtml(why)})</span>`;
+      } else {
+        feesCell = '<span class="muted small">n/a</span>';
+      }
+
+      // Honeypot compact explainer
+      const hpObj = r.honeypot;
+      let hpCell = '';
+      if (hpObj) {
+        if (hpObj.skipped) {
+          hpCell = `<span class="muted small">skipped (${escapeHtml(hpObj.reason||'unknown')})</span>`;
+        } else if (hpObj.sell_quote_ok === false) {
+          hpCell = '❗ sell quote failed';
+        } else if (hpObj.buy_quote_ok === false) {
+          hpCell = '❗ buy quote failed';
+        } else if (hpObj.status) {
+          hpCell = escapeHtml(hpObj.status);
+        } else if (hpObj.suspicious_abi) {
+          hpCell = '⚠ suspicious ABI';
+        } else {
+          hpCell = `<span class="muted small">${escapeHtml(JSON.stringify(hpObj))}</span>`;
+        }
+      } else {
+        hpCell = '<span class="muted small">n/a</span>';
+      }
+
+      const row = `
+        <tr onclick="this.classList.toggle('open')" title="Expand / collapse">
+          <td><span class="caret">▶</span> ${addrCell}</td>
+          <td>${badge(r.risk_tier)}</td>
+          <td>${r.score ?? ''}</td>
+          <td>${ageCell}</td>
+          <td>${liqCell}</td>
+          <td>${escapeHtml(flags)}</td>
+          <td>${feesCell}</td>
+          <td>${hpCell}</td>
+          <td class="actions">
+            <button class="ghost small" onclick="event.stopPropagation(); copyText('${r.address}')">Copy</button>
+            <a class="ghost small" style="padding:6px 10px;display:inline-block" href="${explorer(r.chain||chainEl.value,r.address)}" target="_blank" rel="noreferrer">Open</a>
+          </td>
+        </tr>
+        <tr class="details">
+          <td colspan="9">
+            <div class="kvs">
+              <div class="muted">Ownership</div><div>${fmt(r.ownership)}</div>
+              <div class="muted">ABI Verified</div><div>${fmt(r.abi_verified)}${r.abi_error?` <span class="muted small">(reason: ${escapeHtml(r.abi_error)})</span>`:''}</div>
+              <div class="muted">Fees %</div><div>${fmt(r.fees_percent)||'<span class="muted small">n/a</span>'}</div>
+              <div class="muted">Liquidity</div><div>${fmt(r.liquidity)||'<span class="muted small">n/a</span>'}</div>
+              <div class="muted">Context</div><div>${fmt(r.context)}</div>
+              <div class="muted">Honeypot</div><div>${fmt(r.honeypot)||'<span class="muted small">n/a</span>'}</div>
+              <div class="muted">Suspicious</div><div>${escapeHtml(flags)||'<span class="muted small">none</span>'}</div>
+              <div class="muted">Raw</div><div><pre style="white-space:pre-wrap;margin:0">${escapeHtml(JSON.stringify(r,null,2))}</pre></div>
+            </div>
+          </td>
+        </tr>`;
+      return row;
+    }).join('');
+  }
+
+  function fmt(v){
+    if(v==null) return '';
+    if(typeof v==='object') return `<code>${escapeHtml(JSON.stringify(v))}</code>`;
+    return escapeHtml(String(v));
+  }
+
+  function formatUSD(x){
+    const n = Number(x||0);
+    if(!isFinite(n) || n===0) return '';
+    return '$'+(n>=1000 ? n.toLocaleString() : n.toFixed(2));
+  }
+  function formatNum(x, d=2){
+    const n = Number(x);
+    return Number.isFinite(n) ? n.toFixed(d) : '';
+  }
+  function formatPct(x, d=2){
+    const n = Number(x);
+    return Number.isFinite(n) ? n.toFixed(d) : '?';
+  }
+
+  async function doScan(){
+    const addresses = parseAddresses(addrEl.value);
+    errEl.style.display='none'; errEl.textContent='';
+    if(addresses.length===0){ errEl.textContent='No valid addresses found.'; errEl.style.display='block'; return; }
+
+    localStorage.setItem('st9:last', JSON.stringify({ chain:chainEl.value, addresses, conc:concEl.value, qps:qpsEl.value }));
+
+    scanBtn.disabled=true; spinEl.classList.add('on');
+    try{
+      const res = await fetch('/api/batch', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          chain: chainEl.value,
+          addresses,
+          concurrency: Number(concEl.value||2),
+          etherscan_qps: Number(qpsEl.value||4)
+        })
+      });
+      if(!res.ok){ throw new Error(`HTTP ${res.status} – ${await res.text()}`); }
+      const data = await res.json();
+      results = Array.isArray(data.results) ? data.results : [];
+      results = results.map(r=> ({...r, chain: r.chain || chainEl.value}));
+      render();
+    }catch(e){
+      errEl.textContent = String(e?.message||e);
+      errEl.style.display='block';
+    }finally{
+      scanBtn.disabled=false; spinEl.classList.remove('on');
+    }
+  }
+
+  function download(filename, text){
+    const blob = new Blob([text], {type:'text/plain'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = filename; a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href), 1000);
+  }
+
+  function toCSV(arr){
+    if(!arr.length) return '';
+    const cols = ['address','risk_tier','score','context.age_days','liquidity.usd_liquidity_est','fees_percent.buy','fees_percent.sell','honeypot.status'];
+    const header = cols.join(',');
+    const lines = arr.map(r=>{
+      const g = k=> k.split('.').reduce((o,p)=> (o?o[p]:undefined), r);
+      const vals = cols.map(k=> {
+        const v = g(k);
+        const s = (v==null) ? '' : (typeof v==='object' ? JSON.stringify(v) : String(v));
+        return `"${s.replace(/"/g,'""')}"`;
+      });
+      return vals.join(',');
+    });
+    return [header, ...lines].join('\n');
+  }
+
+  function copyText(t){
+    navigator.clipboard.writeText(t).catch(()=>{});
+  }
+
+  function demoResults(){
+    return [
+      {
+        address:"0x1111111111111111111111111111111111111111",
+        risk_tier:"HIGH", score:87,
+        context:{age_days:0.1},
+        liquidity:{usd_liquidity_est:3800},
+        suspicious_functions:["blacklist","maxTxAmount"],
+        fees_percent:{buy:12,sell:18},
+        honeypot:{status:"❗ likely"},
+        ownership:{renounced:false, owner:"0xabc...def"},
+        abi_verified:false, abi_error:"ABI not verified"
+      },
+      {
+        address:"0x2222222222222222222222222222222222222222",
+        risk_tier:"MEDIUM", score:54,
+        context:{age_days:2.3},
+        liquidity:{usd_liquidity_est:15000},
+        suspicious_functions:["setFees"],
+        fees_percent:{buy:4,sell:6},
+        honeypot:{skipped:true, reason:"disabled"},
+        ownership:{renounced:false},
+        abi_verified:true
+      },
+      {
+        address:"0x3333333333333333333333333333333333333333",
+        risk_tier:"LOW", score:18,
+        context:{error:"created_tx_unknown"},
+        suspicious_functions:[],
+        honeypot:null,
+        ownership:{renounced:true},
+        abi_verified:true
+      }
+    ];
+  }
+</script>
+</body>
+</html>

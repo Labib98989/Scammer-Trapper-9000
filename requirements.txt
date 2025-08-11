@@ -1,0 +1,7 @@
+fastapi==0.116.1   
+fastapi-cli==0.0.8       # latest FastAPI, pydantic v2-based
+uvicorn[standard]==0.35.0 # includes uvloop/httptools/watchfiles for speed+reload
+web3==7.13.0              # current web3.py major (v7)
+python-dotenv==1.1.1
+requests==2.32.4
+types-requests==2.32.4.20250611
