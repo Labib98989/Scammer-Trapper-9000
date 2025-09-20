@@ -45,32 +45,6 @@ Environment-driven config (.env).
 
 Pluggable Web3 RPCs and rate-limited explorer calls.
 
-Project Structure
-.
-├── api.py                # FastAPI app with /api endpoints
-├── cli.py                # CLI scanner for one address
-├── batch_cli.py          # Batch scanner with CSV/JSON output
-├── index.html            # Web UI (frontend)
-├── backend/
-│   ├── core/
-│   │   ├── analyze.py    # Orchestrates all checks → analyze_token()
-│   │   └── score.py      # Simple scoring rules
-│   ├── utils/
-│   │   ├── abi_loader.py # Fetch ABI + suspicious functions
-│   │   ├── addr.py       # EVM address normalizer
-│   │   ├── cache.py      # TTL memoization decorator
-│   │   ├── context.py    # Contract creation & age
-│   │   ├── fee_check.py  # Extract buy/sell/transfer fees
-│   │   ├── honeypot.py   # Honeypot probe via router
-│   │   ├── liquidity.py  # Find deepest V2 pair (Uniswap/Pancake)
-│   │   ├── mint_check.py # Mint function detection
-│   │   ├── ownership.py  # Owner detection (EOA/Contract, renounced, proxy)
-│   │   ├── ratelimit.py  # HTTP + rate limiting for APIs
-│   │   └── risk_score.py # Alternative advanced scoring model
-│   └── chains.py         # Chain config + Web3 factory
-├── .env                  # Environment variables
-├── requirements.txt      # Python dependencies
-
 Installation
 
 Clone the repo.
